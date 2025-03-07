@@ -1,19 +1,8 @@
 import { useEffect, useState } from "react";
-import InputForm from "./components/input-form/InputForm";
-import People from "./components/people/People";
+import People from "../../components/people/People";
 
-function App() {
+const Home = () => {
   const [peoples, setPeoples] = useState([]);
-  const handleInputFormSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const age = form.age.value;
-
-    const userInfo = { name, email, age };
-    console.log("Input form submitted", userInfo);
-  };
 
   useEffect(() => {
     fetchPeople();
@@ -36,7 +25,6 @@ function App() {
   return (
     <>
       <h1 className="text-5xl font-bold text-center">Express Recap</h1>
-      <InputForm handleInputFormSubmit={handleInputFormSubmit}></InputForm>
       <p className="mt-20 mb-6 text-3xl font-bold text-center ">
         Total People : {peoples.length}
       </p>
@@ -48,6 +36,6 @@ function App() {
       <div></div>
     </>
   );
-}
+};
 
-export default App;
+export default Home;

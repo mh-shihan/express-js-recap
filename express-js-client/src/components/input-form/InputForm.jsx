@@ -1,4 +1,19 @@
-const InputForm = ({ handleInputFormSubmit }) => {
+const InputForm = () => {
+  const handleInputFormSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const age = form.age.value;
+
+    const userInfo = { name, email, age };
+    console.log("Input form submitted", userInfo);
+
+    // Create Post Method
+
+    form.reset();
+  };
+
   return (
     <div className="flex justify-center mt-24">
       <form
@@ -16,7 +31,7 @@ const InputForm = ({ handleInputFormSubmit }) => {
           className=" rounded-md"
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="example@gmail.com"
           id=""
         />
         <input
