@@ -6,7 +6,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// parse
+// parser
 app.use(cors());
 app.use(express.json());
 
@@ -21,18 +21,36 @@ const client = new MongoClient(uri, {
   },
 });
 
+const database = client.db("express_js_DB");
+const peopleCollection = database.collection("peoples");
+const insertedPeopleCollection = database.collection("inserted_peoples");
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    // GET API
+    app.get("/inserted-peoples", async (req, res) => {
+      const result = await insertedPeopleCollection.find().toArray();
+      res.send(result);
+    });
+
+    // POST API
+    app.post("/peoples", async (req, res) => {
+      const people = req.body;
+
+      const result = await insertedPeopleCollection.insertOne(people);
+
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
   } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
   }
 }
 run().catch(console.log);
@@ -136,11 +154,6 @@ app.get("/", (req, res) => {
 
 app.get("/peoples", (req, res) => {
   res.send(people);
-});
-
-app.post("/peoples", (req, res) => {
-  console.log("Post API has been hit");
-  res.send("Post request to the peoples page");
 });
 
 app.listen(port, () => {
