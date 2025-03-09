@@ -33,7 +33,6 @@ const Home = () => {
           <People key={people.id} people={people}></People>
         ))}
       </div>
-      <div></div>
     </>
   );
 };

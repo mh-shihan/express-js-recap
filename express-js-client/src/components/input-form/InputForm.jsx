@@ -10,8 +10,19 @@ const InputForm = () => {
     console.log("Input form submitted", userInfo);
 
     // Create Post Method
-
-    form.reset();
+    fetch("http://localhost:5000/peoples", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          alert("Data Inserted Successfully");
+          form.reset();
+        }
+      });
+    // .catch((error) => console.log(error));
   };
 
   return (

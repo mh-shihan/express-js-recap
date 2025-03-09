@@ -56,7 +56,7 @@ const Navbar = () => {
             <Link to="/input-form">Input Form</Link>
           </li>
           <li>
-            <a>Item 3</a>
+            <Link to="/inserted-peoples">Inserted People</Link>
           </li>
         </ul>
       </div>
