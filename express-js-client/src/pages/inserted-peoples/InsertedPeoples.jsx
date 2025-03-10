@@ -25,7 +25,7 @@ const InsertedPeoples = () => {
   };
   return (
     <div>
-      <p className="text-center font-medium text-2xl">
+      <p className="text-center font-medium text-2xl my-4">
         Total Inserted People : {insertedPeoples.length}
       </p>
       {

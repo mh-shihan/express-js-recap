@@ -26,7 +26,8 @@ const InputForm = () => {
   };
 
   return (
-    <div className="flex justify-center mt-24">
+    <div className="flex flex-col items-center justify-center mt-24">
+      <h1 className="text-3xl text-center font-medium mb-4"> INSERT FORM</h1>
       <form
         onSubmit={handleInputFormSubmit}
         className="flex flex-col gap-4 w-1/4 border-2 border-fuchsia-700 p-10 rounded-lg bg-slate-400"
