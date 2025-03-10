@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import People from "../../components/people/People";
+import HomePeople from "../../components/home-people/HomePeople";
 
 const Home = () => {
   const [peoples, setPeoples] = useState([]);
@@ -30,7 +30,7 @@ const Home = () => {
       </p>
       <div className="grid grid-cols-5 gap-2 mx-20  mb-20">
         {peoples.map((people) => (
-          <People key={people.id} people={people}></People>
+          <HomePeople key={people.id} people={people}></HomePeople>
         ))}
       </div>
     </>
