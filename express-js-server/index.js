@@ -31,6 +31,13 @@ async function run() {
     await client.connect();
 
     // GET API
+    app.get("/peoples", async (req, res) => {
+      const result = await peopleCollection.find().toArray();
+      console.log(result);
+
+      res.send(result);
+    });
+
     app.get("/inserted-peoples", async (req, res) => {
       const result = await insertedPeopleCollection.find().toArray();
       res.send(result);
@@ -92,105 +99,8 @@ async function run() {
 }
 run().catch(console.log);
 
-const people = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-    gender: "Male",
-    age: 30,
-    religion: "Christianity",
-    occupation: "Software Engineer",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    gender: "Female",
-    age: 28,
-    religion: "Islam",
-    occupation: "Data Analyst",
-  },
-  {
-    id: 3,
-    name: "Robert Brown",
-    email: "robert.brown@example.com",
-    gender: "Male",
-    age: 35,
-    religion: "Hinduism",
-    occupation: "Doctor",
-  },
-  {
-    id: 4,
-    name: "Emily Johnson",
-    email: "emily.johnson@example.com",
-    gender: "Female",
-    age: 27,
-    religion: "Buddhism",
-    occupation: "Graphic Designer",
-  },
-  {
-    id: 5,
-    name: "Michael Davis",
-    email: "michael.davis@example.com",
-    gender: "Male",
-    age: 40,
-    religion: "Christianity",
-    occupation: "Teacher",
-  },
-  {
-    id: 6,
-    name: "Sophia Martinez",
-    email: "sophia.martinez@example.com",
-    gender: "Female",
-    age: 32,
-    religion: "Judaism",
-    occupation: "Marketing Manager",
-  },
-  {
-    id: 7,
-    name: "Daniel Wilson",
-    email: "daniel.wilson@example.com",
-    gender: "Male",
-    age: 29,
-    religion: "Islam",
-    occupation: "Mechanical Engineer",
-  },
-  {
-    id: 8,
-    name: "Olivia Taylor",
-    email: "olivia.taylor@example.com",
-    gender: "Female",
-    age: 26,
-    religion: "Hinduism",
-    occupation: "Biologist",
-  },
-  {
-    id: 9,
-    name: "William Anderson",
-    email: "william.anderson@example.com",
-    gender: "Male",
-    age: 33,
-    religion: "Buddhism",
-    occupation: "Financial Advisor",
-  },
-  {
-    id: 10,
-    name: "Emma Thomas",
-    email: "emma.thomas@example.com",
-    gender: "Female",
-    age: 31,
-    religion: "Christianity",
-    occupation: "HR Manager",
-  },
-];
-
 app.get("/", (req, res) => {
   res.send("Express Js Recap is Running");
-});
-
-app.get("/peoples", (req, res) => {
-  res.send(people);
 });
 
 app.listen(port, () => {
