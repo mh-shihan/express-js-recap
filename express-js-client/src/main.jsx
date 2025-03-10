@@ -6,6 +6,7 @@ import InputForm from "./components/input-form/InputForm.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Home from "./pages/home/Home.jsx";
 import InsertedPeoples from "./pages/inserted-peoples/InsertedPeoples.jsx";
+import Update from "./pages/update/Update.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         path: "inserted-peoples",
         element: <InsertedPeoples></InsertedPeoples>,
         loader: () => fetch("http://localhost:5000/inserted-peoples"),
+      },
+      {
+        path: "update",
+        element: <Update></Update>,
       },
     ],
   },
