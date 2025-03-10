@@ -52,6 +52,26 @@ async function run() {
       res.send(result);
     });
 
+    // UPDATE API
+    app.put("/inserted-peoples/:id", async (req, res) => {
+      const id = req.params.id;
+      const people = req.body;
+
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updatedPeople = {
+        $set: {
+          ...people,
+        },
+      };
+      const result = await insertedPeopleCollection.updateOne(
+        filter,
+        updatedPeople,
+        options
+      );
+      res.send(result);
+    });
+
     // DELETE API
     app.delete("/inserted-peoples/:id", async (req, res) => {
       const id = req.params.id;
